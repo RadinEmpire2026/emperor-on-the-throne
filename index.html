@@ -7,62 +7,267 @@
 <title>جنگ بر تخت</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#101827;color:#fff;
- font-family:Arial,Tahoma,sans-serif;text-align:center
-}
-header{
- padding:24px 12px;
- background:linear-gradient(135deg,#641d2b,#21162e);
- border-bottom:2px solid #e3b44f
-}
-h1{color:#ffd36a;font-size:30px;margin:0}
-p{line-height:1.9}
-main{max-width:650px;margin:auto;padding:14px}
-.panel{
- background:#1d2a40;border:1px solid #46546b;
- border-radius:16px;padding:18px;margin:14px 0
-}
-.castle{font-size:90px}
-h2,h3{color:#ffd36a}
-button{
- display:block;width:100%;padding:14px;margin:9px 0;
- border:0;border-radius:10px;background:#e6b447;
- color:#201708;font-size:16px;font-weight:bold
-}
-button:active{transform:scale(.98)}
-.secondary{background:#354963;color:white}
-.note{color:#bdcbe0;font-size:13px}
+body{margin:0;background:#111827;color:#fff;font-family:Tahoma,Arial}
+header{padding:22px 12px;text-align:center;background:linear-gradient(135deg,#581c87,#b45309)}
+h1{margin:0 0 8px;color:#fde68a}
+header p{margin:5px;font-size:13px}
+.stats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px;background:#1f2937}
+.stat{background:#374151;padding:9px;border-radius:10px;font-size:13px}
+nav{display:flex;gap:6px;padding:10px;overflow-x:auto;background:#111827}
+button{font-family:inherit;cursor:pointer;border:0;border-radius:9px;padding:11px;background:#a16207;color:white}
+nav button{white-space:nowrap;background:#374151}
+nav button:active,button:hover{background:#ca8a04}
+main{padding:12px;max-width:750px;margin:auto}
+.panel{background:#1f2937;border:1px solid #374151;border-radius:15px;padding:15px;margin-bottom:13px}
+h2{margin-top:0;color:#fcd34d;font-size:20px}
+h3{color:#fde68a}
+.big{font-size:60px;text-align:center;padding:10px}
+.item{background:#374151;border-radius:10px;padding:12px;margin:9px 0}
+.item button{margin-top:8px}
+small{color:#d1d5db}
+input{width:100%;padding:12px;border-radius:8px;border:1px solid #6b7280;background:#111827;color:white;margin:7px 0}
+#log{font-size:13px;color:#86efac;line-height:2}
+.map{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.cell{background:#365b43;border:1px solid #86a779;border-radius:10px;padding:18px 3px}
+footer{text-align:center;color:#9ca3af;padding:20px;font-size:12px}
 </style>
 </head>
 <body>
 <header>
- <h1>⚔️ جنگ بر تخت ⚔️</h1>
- <p>سرزمینت را بساز؛ برای تاج و تخت بجنگ!</p>
+<h1>👑 جنگ بر تخت 👑</h1>
+<p>پادشاهی خودت را بساز؛ فرمانروای جهان شو!</p>
+<p>نسخهٔ آزمایشی</p>
 </header>
+
+<div class="stats">
+<div class="stat">🪙 سکه: <b id="gold">500</b></div>
+<div class="stat">🪵 چوب: <b id="wood">200</b></div>
+<div class="stat">🪨 سنگ: <b id="stone">200</b></div>
+<div class="stat">⚔️ سرباز: <b id="army">20</b></div>
+</div>
+
+<nav>
+<button onclick="show('city')">🏰 شهر</button>
+<button onclick="show('map')">🌍 نقشه</button>
+<button onclick="show('army')">⚔️ ارتش</button>
+<button onclick="show('dragon')">🐉 اژدها</button>
+<button onclick="show('alliance')">🤝 اتحاد</button>
+<button onclick="show('chat')">💬 چت</button>
+<button onclick="show('shop')">🛒 فروشگاه</button>
+<button onclick="show('admin')">👑 مدیریت</button>
+</nav>
+
 <main>
- <section class="panel">
-  <div class="castle">🏰</div>
-  <h2>به پادشاهی خوش آمدی</h2>
-  <p>فرمانروایی تو از اینجا آغاز می‌شود.</p>
-  <button onclick="show('بخش شهرسازی: این بخش در مرحله بعد ساخته می‌شود.')">🏗️ شهر و قلعه</button>
-  <button onclick="show('بخش ارتش و نبرد: سیستم جنگ در مرحله بعد ساخته می‌شود.')">⚔️ ارتش و نبرد</button>
-  <button onclick="show('نقشه جهان در مرحله بعد به بازی اضافه می‌شود.')">🌍 نقشه جهان</button>
-  <button onclick="show('برای بازی آنلاین به سرور و پایگاه داده نیاز داریم؛ هنوز راه‌اندازی نشده است.')">👥 بازی آنلاین با دوستان</button>
-  <button onclick="show('پنل مدیریت امن را بعد از ساخت حساب‌ها و سرور اضافه می‌کنیم.')">👑 پنل مدیریت</button>
- </section>
- <section class="panel">
-  <h3>📜 پیام فرمانروا</h3>
-  <p id="message">آماده‌ای پادشاهی خودت را بسازی؟</p>
- </section>
- <p class="note">
-  نسخه آغازین پروژه — قابلیت‌های آنلاین و سه‌بعدی هنوز پیاده‌سازی نشده‌اند.
- </p>
+<section class="panel" id="city">
+<h2>🏰 پایتخت تو</h2>
+<div class="big">🏰</div>
+<h3>قلعهٔ پادشاهی</h3>
+<p>سطح قلعه: <b id="level">1</b></p>
+<p>قلعه را ارتقا بده تا امپراتوری قدرتمندتری بسازی.</p>
+<button onclick="upgrade()">⬆️ ارتقای قلعه (۱۰۰ سکه و ۵۰ سنگ)</button>
+<div class="item">
+<h3>🪵 کارگاه چوب‌بری</h3>
+<p>چوب برای ساخت ساختمان‌ها ضروری است.</p>
+<button onclick="collect('wood',50)">تولید ۵۰ چوب</button>
+</div>
+<div class="item">
+<h3>⛏️ معدن سنگ</h3>
+<button onclick="collect('stone',50)">استخراج ۵۰ سنگ</button>
+</div>
+<div class="item">
+<h3>💰 خزانه</h3>
+<button onclick="collect('gold',100)">جمع‌آوری ۱۰۰ سکه</button>
+</div>
+</section>
+
+<section class="panel" id="map" hidden>
+<h2>🌍 نقشهٔ جهان</h2>
+<p>سرزمین‌های اطراف امپراتوری تو</p>
+<div class="map">
+<div class="cell">🌲 جنگل</div>
+<div class="cell">🏰<br>قلعهٔ تو</div>
+<div class="cell">⛰️ معدن</div>
+<div class="cell">🏕️ اردوگاه</div>
+<div class="cell">🐉 غار اژدها</div>
+<div class="cell">🌊 دریا</div>
+<div class="cell">🏰 قلعهٔ شمال</div>
+<div class="cell">🌾 مزرعه</div>
+<div class="cell">🏰 قلعهٔ جنوب</div>
+</div>
+<p><small>این نقشه فعلاً محلی و آزمایشی است؛ بازیکنان واقعی هنوز به آن متصل نیستند.</small></p>
+</section>
+
+<section class="panel" id="army" hidden>
+<h2>⚔️ ارتش پادشاهی</h2>
+<div class="big">🛡️</div>
+<p>تعداد سربازان: <b id="army2">20</b></p>
+<div class="item">
+<h3>🗡️ سرباز پیاده</h3>
+<p>هزینهٔ آموزش: ۵۰ سکه</p>
+<button onclick="train()">آموزش یک سرباز</button>
+</div>
+<div class="item">
+<h3>⚔️ تمرین ارتش</h3>
+<p>قدرت ارتش را برای نبردهای آینده آماده کن.</p>
+<button onclick="drill()">تمرین ارتش (۲۰ سکه)</button>
+</div>
+<p>قدرت ارتش: <b id="power">200</b></p>
+</section>
+
+<section class="panel" id="dragon" hidden>
+<h2>🐉 اژدهای افسانه‌ای</h2>
+<div class="big">🐲</div>
+<h3>آذرخش، اژدهای آتشین</h3>
+<p>سطح اژدها: <b id="dragonlevel">1</b></p>
+<p>اژدها محافظ قلعه و همراه ارتش توست.</p>
+<button onclick="feedDragon()">🍖 تقویت اژدها (۵۰ سکه)</button>
+</section>
+
+<section class="panel" id="alliance" hidden>
+<h2>🤝 اتحاد پادشاهان</h2>
+<p>با پادشاهان دیگر متحد شو و یک اتحاد بساز.</p>
+<input id="allianceName" placeholder="نام اتحاد خودت را بنویس">
+<button onclick="createAlliance()">ساخت اتحاد</button>
+<p id="allianceResult">هنوز اتحادی نساخته‌ای.</p>
+<p><small>دعوت بازیکنان واقعی پس از راه‌اندازی سرور آنلاین فعال می‌شود.</small></p>
+</section>
+
+<section class="panel" id="chat" hidden>
+<h2>💬 گفت‌وگوی پادشاهی</h2>
+<div id="messages" class="item">📜 پیام‌رسان آزمایشی آماده است.</div>
+<input id="message" placeholder="پیامت را بنویس">
+<button onclick="sendMessage()">ارسال پیام</button>
+<p><small>این چت فعلاً فقط روی همین صفحه کار می‌کند و عمومی نیست.</small></p>
+</section>
+
+<section class="panel" id="shop" hidden>
+<h2>🛒 فروشگاه امپراتوری</h2>
+<div class="item">
+<h3>🪙 بستهٔ کوچک سکه</h3>
+<p>۵۰۰ سکهٔ آزمایشی</p>
+<button onclick="freePackage(500)">دریافت آزمایشی</button>
+</div>
+<div class="item">
+<h3>💎 بستهٔ پادشاهی</h3>
+<p>۱۰۰۰ سکهٔ آزمایشی</p>
+<button onclick="freePackage(1000)">دریافت آزمایشی</button>
+</div>
+<div class="item">
+<h3>🐉 بستهٔ اژدها</h3>
+<p>تقویت اژدهای تو</p>
+<button onclick="feedDragon()">تقویت آزمایشی</button>
+</div>
+<p><small>این فروشگاه پول واقعی دریافت نمی‌کند. خرید واقعی به سرور، تأیید پرداخت و اتصال رسمی فروشگاه نیاز دارد.</small></p>
+</section>
+
+<section class="panel" id="admin" hidden>
+<h2>👑 پنل مدیریت آزمایشی</h2>
+<p>این بخش فعلاً نمایشی است و دسترسی امن مدیریتی ندارد.</p>
+<div class="item">
+<h3>🪙 افزودن سکه</h3>
+<input id="adminGold" type="number" min="1" placeholder="تعداد سکه">
+<button onclick="adminAdd()">افزودن سکه آزمایشی</button>
+</div>
+<div class="item">
+<h3>📢 ساخت رویداد</h3>
+<input id="eventName" placeholder="نام رویداد">
+<button onclick="makeEvent()">ساخت رویداد</button>
+<p id="eventResult"></p>
+</div>
+<div class="item">
+<h3>🚫 مدیریت بازیکنان</h3>
+<p>مسدودکردن واقعی بازیکنان پس از ساخت حساب‌ها و سرور امن پیاده‌سازی می‌شود.</p>
+</div>
+</section>
+
+<section class="panel">
+<h2>📜 گزارش امپراتوری</h2>
+<div id="log">به پادشاهی خودت خوش آمدی!</div>
+</section>
 </main>
+<footer>جنگ بر تخت | نمونهٔ اولیهٔ قابل‌بازی</footer>
+
 <script>
-function show(message){
- document.getElementById('message').textContent=message;
+let gold=500,wood=200,stone=200,army=20,level=1;
+let power=200,dragonlevel=1;
+
+function update(){
+document.getElementById('gold').textContent=gold;
+document.getElementById('wood').textContent=wood;
+document.getElementById('stone').textContent=stone;
+document.getElementById('army').textContent=army;
+document.getElementById('army2').textContent=army;
+document.getElementById('level').textContent=level;
+document.getElementById('power').textContent=power;
+document.getElementById('dragonlevel').textContent=dragonlevel;
 }
+function show(id){
+document.querySelectorAll('main section[id]').forEach(s=>s.hidden=true);
+document.getElementById(id).hidden=false;
+window.scrollTo(0,0);
+}
+function log(msg){
+document.getElementById('log').textContent=msg;
+}
+function collect(type,amount){
+if(type==='gold')gold+=amount;
+if(type==='wood')wood+=amount;
+if(type==='stone')stone+=amount;
+update();log('منابع امپراتوری افزایش یافت!');
+}
+function upgrade(){
+if(gold>=100&&stone>=50){
+gold-=100;stone-=50;level++;update();
+log('قلعه به سطح '+level+' ارتقا یافت!');
+}else alert('سکه یا سنگ کافی نداری!');
+}
+function train(){
+if(gold>=50){
+gold-=50;army++;power+=10;update();log('یک سرباز به ارتش پیوست!');
+}else alert('سکه کافی نداری!');
+}
+function drill(){
+if(gold>=20){
+gold-=20;power+=15;update();log('ارتش تمرین کرد و قدرتمندتر شد!');
+}else alert('سکه کافی نداری!');
+}
+function feedDragon(){
+if(gold>=50){
+gold-=50;dragonlevel++;power+=25;update();
+log('اژدها تقویت شد!');
+}else alert('سکه کافی نداری!');
+}
+function createAlliance(){
+let name=document.getElementById('allianceName').value.trim();
+if(!name){alert('اول نام اتحاد را بنویس!');return;}
+document.getElementById('allianceResult').textContent='اتحاد «'+name+'» ساخته شد! (آزمایشی)';
+log('اتحاد جدید ساخته شد: '+name);
+}
+function sendMessage(){
+let input=document.getElementById('message');
+let msg=input.value.trim();
+if(!msg)return;
+let box=document.createElement('div');
+box.className='item';
+box.textContent='👑 پادشاه: '+msg;
+document.getElementById('messages').appendChild(box);
+input.value='';
+}
+function freePackage(amount){
+gold+=amount;update();log(amount+' سکهٔ آزمایشی دریافت شد.');
+}
+function adminAdd(){
+let n=Number(document.getElementById('adminGold').value);
+if(!Number.isInteger(n)||n<1||n>1000000){alert('عدد بین ۱ تا ۱۰۰۰۰۰۰ وارد کن.');return;}
+gold+=n;update();log(n+' سکه به صورت آزمایشی اضافه شد.');
+}
+function makeEvent(){
+let name=document.getElementById('eventName').value.trim();
+if(!name){alert('نام رویداد را وارد کن.');return;}
+document.getElementById('eventResult').textContent='رویداد آزمایشی ساخته شد: '+name;
+log('رویداد آزمایشی: '+name);
+}
+update();
 </script>
 </body>
 </html>
