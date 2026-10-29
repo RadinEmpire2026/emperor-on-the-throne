@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>جنگ بر تخت</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#101827;color:#fff;
+ font-family:Arial,Tahoma,sans-serif;text-align:center
+}
+header{
+ padding:24px 12px;
+ background:linear-gradient(135deg,#641d2b,#21162e);
+ border-bottom:2px solid #e3b44f
+}
+h1{color:#ffd36a;font-size:30px;margin:0}
+p{line-height:1.9}
+main{max-width:650px;margin:auto;padding:14px}
+.panel{
+ background:#1d2a40;border:1px solid #46546b;
+ border-radius:16px;padding:18px;margin:14px 0
+}
+.castle{font-size:90px}
+h2,h3{color:#ffd36a}
+button{
+ display:block;width:100%;padding:14px;margin:9px 0;
+ border:0;border-radius:10px;background:#e6b447;
+ color:#201708;font-size:16px;font-weight:bold
+}
+button:active{transform:scale(.98)}
+.secondary{background:#354963;color:white}
+.note{color:#bdcbe0;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+ <h1>⚔️ جنگ بر تخت ⚔️</h1>
+ <p>سرزمینت را بساز؛ برای تاج و تخت بجنگ!</p>
+</header>
+<main>
+ <section class="panel">
+  <div class="castle">🏰</div>
+  <h2>به پادشاهی خوش آمدی</h2>
+  <p>فرمانروایی تو از اینجا آغاز می‌شود.</p>
+  <button onclick="show('بخش شهرسازی: این بخش در مرحله بعد ساخته می‌شود.')">🏗️ شهر و قلعه</button>
+  <button onclick="show('بخش ارتش و نبرد: سیستم جنگ در مرحله بعد ساخته می‌شود.')">⚔️ ارتش و نبرد</button>
+  <button onclick="show('نقشه جهان در مرحله بعد به بازی اضافه می‌شود.')">🌍 نقشه جهان</button>
+  <button onclick="show('برای بازی آنلاین به سرور و پایگاه داده نیاز داریم؛ هنوز راه‌اندازی نشده است.')">👥 بازی آنلاین با دوستان</button>
+  <button onclick="show('پنل مدیریت امن را بعد از ساخت حساب‌ها و سرور اضافه می‌کنیم.')">👑 پنل مدیریت</button>
+ </section>
+ <section class="panel">
+  <h3>📜 پیام فرمانروا</h3>
+  <p id="message">آماده‌ای پادشاهی خودت را بسازی؟</p>
+ </section>
+ <p class="note">
+  نسخه آغازین پروژه — قابلیت‌های آنلاین و سه‌بعدی هنوز پیاده‌سازی نشده‌اند.
+ </p>
+</main>
+<script>
+function show(message){
+ document.getElementById('message').textContent=message;
+}
+</script>
+</body>
+</html>
